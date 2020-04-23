@@ -6,25 +6,25 @@ import './Question2.css'
 const Question2 = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, error, country } = useSelector((state) => state.question2);
+  const { isLoading, error, countries } = useSelector((state) => state.question2);
 
-  const countries = ['Germany', 'Israel', 'Malta', 'United States'];
+  const search = ['Germany', 'Israel', 'Malta', 'United States'];
 
   useEffect(() => {
-    dispatch(fetchCountries(countries));
+    dispatch(fetchCountries(search));
   }, []);
 
   return (
     <div>
       <h2>Question 2</h2>
-      <div>Search countries: '{[...countries].join(', ')}'</div>
+      <div>Search countries: '{[...search].join(', ')}'</div>
       {isLoading ? (
         <span>Loading countries, please wait...</span>
       ) : (
-          country && (
+          countries && (
             <div>
               <h5>Search results</h5>
-              {country && country.map((x) => (
+              {countries && countries.map((x) => (
                 <div className="coutry" key={x.alpha3Code}>
                   <div><img src={x.flag} width="30px" /></div>
                   <div>{x.name}</div>

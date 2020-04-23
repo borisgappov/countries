@@ -7,14 +7,14 @@ const question2Slice = createSlice({
   initialState: {
     isLoading: false,
     error: null,
-    country: null,
+    countries: null,
   },
   reducers: {
     getCountriesStart: (state) => {
       state.isLoading = true;
     },
     getCountriesSuccess(state, { payload }) {
-      state.country = payload;
+      state.countries = payload;
       state.isLoading = false;
       state.error = null;
     },
@@ -32,8 +32,8 @@ export default question2Slice.reducer;
 export const fetchCountries = (countries) => async (dispatch) => {
   try {
     dispatch(getCountriesStart());
-    const country = await getCountries(countries);
-    dispatch(getCountriesSuccess(country));
+    const data = await getCountries(countries);
+    dispatch(getCountriesSuccess(data));
   } catch (err) {
     dispatch(getCountriesFailure(err.toString()));
   }
