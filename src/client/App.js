@@ -3,6 +3,7 @@ import './app.css';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Question1 from './features/question1/Question1';
 import Question2 from './features/question2/Question2';
+import Question3 from './features/question3/Question3';
 
 const App = () => {
   return (
@@ -37,11 +38,3 @@ const App = () => {
 };
 
 export default App;
-
-function Question3() {
-  return (
-    <div>
-      <h2>Question 3</h2>
-    </div>
-  );
-}

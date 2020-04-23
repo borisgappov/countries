@@ -1,5 +1,6 @@
 import * as restCountries from './restcountries-client/index';
 import GetAll from './restcountries-client/model/GetAll';
+import { fixNonSerializable } from './core/utils';
 
 const instance = new restCountries.RestApi();
 
@@ -11,5 +12,34 @@ instance.getAll = function (queryParams, callback) {
     queryParams,
     {}, {}, null, [], [], ['application/json'], [GetAll], null, callback);
 };
+
+export const getCountry = (countryName) => {
+  return new Promise((resolve, reject) => {
+    instance.getByCountryName(countryName, (error, data, response) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(fixNonSerializable(data[0]));
+      }
+    });
+  });
+}
+
+export const getCountries = (countries) => {
+  return new Promise((resolve, reject) => {
+    instance.getAll(
+      {
+        countries: countries.join(','),
+      },
+      (error, data, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(fixNonSerializable(data));
+        }
+      }
+    );
+  });
+}
 
 export const apiInstance = instance;

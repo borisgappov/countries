@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { apiInstance } from '../../restcountries-service';
-import { fixNonSerializable } from '../../core/utils';
+import { getCountry } from '../../restcountries-service';
 
 const question1Slice = createSlice({
   name: 'question1',
@@ -39,14 +38,4 @@ export const fetchCountry = (countryName) => async (dispatch) => {
   }
 };
 
-const getCountry = (countryName) => {
-  return new Promise((resolve, reject) => {
-    apiInstance.getByCountryName(countryName, (error, data, response) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(fixNonSerializable(data[0]));
-      }
-    });
-  });
-};
+
