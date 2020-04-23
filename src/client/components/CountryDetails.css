@@ -7,9 +7,11 @@
     font-size: 0.8rem;
     color: rgb(0, 102, 150);
   }
+
   dt::after {
     content: ":";
   }
+
   dd {
     margin-left: 110px;
     padding: 0 0 0.5rem 0;

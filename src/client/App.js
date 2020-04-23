@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './app.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Question1 from './features/question1/Question1';
+import Question2 from './features/question2/Question2';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <ul>
           <li>
@@ -31,19 +32,11 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
 export default App;
-
-function Question2() {
-  return (
-    <div>
-      <h2>Question 2</h2>
-    </div>
-  );
-}
 
 function Question3() {
   return (

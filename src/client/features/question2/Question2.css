@@ -1,0 +1,10 @@
+.coutry {
+  display: flex;
+  padding: 5px;
+  border-bottom: 1px solid silver;
+  max-width: 350px;
+}
+
+.coutry div {
+  margin-right: 10px;
+}
