@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCountries } from '../../restcountries-service';
 
-const question2Slice = createSlice({
-  name: 'question2',
+const question4Slice = createSlice({
+  name: 'question4',
   initialState: {
     isLoading: false,
     error: null,
     countries: null,
+    search: 'Malta'
   },
   reducers: {
     getCountriesStart: (state) => {
@@ -21,12 +22,15 @@ const question2Slice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
   },
 });
 
-const { getCountriesStart, getCountriesSuccess, getCountriesFailure } = question2Slice.actions;
+const { getCountriesStart, getCountriesSuccess, getCountriesFailure, setSearch } = question4Slice.actions;
 
-export default question2Slice.reducer;
+export default question4Slice.reducer;
 
 export const fetchCountries = (countries) => async (dispatch) => {
   try {

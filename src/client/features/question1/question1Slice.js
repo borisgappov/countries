@@ -24,7 +24,7 @@ const question1Slice = createSlice({
   },
 });
 
-export const { getCountryStart, getCountrySuccess, getCountryFailure } = question1Slice.actions;
+const { getCountryStart, getCountrySuccess, getCountryFailure } = question1Slice.actions;
 
 export default question1Slice.reducer;
 

@@ -28,7 +28,7 @@ const question3Slice = createSlice({
   },
 });
 
-export const { getCountriesStart, getCountriesSuccess, getCountriesFailure, setSearch } = question3Slice.actions;
+const { getCountriesStart, getCountriesSuccess, getCountriesFailure, setSearch } = question3Slice.actions;
 
 export default question3Slice.reducer;
 

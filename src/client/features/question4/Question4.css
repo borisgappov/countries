@@ -1,0 +1,17 @@
+.reels {
+  display: flex;
+  border: 1px solid silver;
+  width: 210px;
+  margin-bottom: 10px;
+}
+
+.reels div {
+  padding: 5px;
+  border-right: 1px solid silver;
+  text-align: center;
+  width: 70px;
+}
+
+.reels .last {
+  border: none;
+}
