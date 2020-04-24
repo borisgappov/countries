@@ -1,11 +1,12 @@
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './app.css';
 import { Question1, Question2, Question3, Question4, Question5 } from './features';
 
-const App = () => {
+const App = (props) => {
   return (
-    <BrowserRouter>
+    <ConnectedRouter history={props.history}>
       <div>
         <ul>
           <li>
@@ -27,7 +28,7 @@ const App = () => {
         <hr />
         <Switch>
           <Route exact path='/'>
-            <Question5 />
+            <Question1 />
           </Route>
           <Route path='/question2'>
             <Question2 />
@@ -43,7 +44,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </ConnectedRouter>
   );
 };
 
