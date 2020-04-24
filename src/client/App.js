@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import './app.css';
-import { Question1, Question2, Question3, Question4 } from './features';
+import { Question1, Question2, Question3, Question4, Question5 } from './features';
 
 const App = () => {
   return (
@@ -20,11 +20,14 @@ const App = () => {
           <li>
             <Link to='/question4'>Question 4</Link>
           </li>
+          <li>
+            <Link to='/question5'>Question 5</Link>
+          </li>
         </ul>
         <hr />
         <Switch>
           <Route exact path='/'>
-            <Question1 />
+            <Question5 />
           </Route>
           <Route path='/question2'>
             <Question2 />
@@ -34,6 +37,9 @@ const App = () => {
           </Route>
           <Route path='/question4'>
             <Question4 />
+          </Route>
+          <Route path='/question5'>
+            <Question5 />
           </Route>
         </Switch>
       </div>
