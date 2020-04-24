@@ -1,0 +1,17 @@
+.coutry {
+  display: flex;
+  padding: 5px;
+  max-width: 350px;
+}
+
+.coutry div {
+  margin-right: 10px;
+}
+
+.flag-small {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.list-item {
+  cursor: pointer;
+}

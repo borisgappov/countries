@@ -7,7 +7,7 @@ const question3Slice = createSlice({
     isLoading: false,
     error: null,
     countries: null,
-    search: 'Malta'
+    search: 'mal'
   },
   reducers: {
     getCountriesStart: (state) => {
@@ -28,7 +28,7 @@ const question3Slice = createSlice({
   },
 });
 
-const { getCountriesStart, getCountriesSuccess, getCountriesFailure, setSearch } = question3Slice.actions;
+export const { getCountriesStart, getCountriesSuccess, getCountriesFailure, setSearch } = question3Slice.actions;
 
 export default question3Slice.reducer;
 

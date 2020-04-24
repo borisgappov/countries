@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { fetchCountry } from './question1Slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CountryDetails from '../../components/CountryDetails'
+import Card from 'react-bootstrap/Card';
 
 const Question1 = () => {
   const dispatch = useDispatch();
 
   const { isLoading, error, country } = useSelector((state) => state.question1);
 
-  const countryName = 'USA';
+  const countryName = 'Malta';
 
   useEffect(() => {
     dispatch(fetchCountry(countryName));
@@ -19,15 +20,17 @@ const Question1 = () => {
   ) : (
     country && (
       <div>
-        <h5>Search result</h5>
-        <CountryDetails country={country} />
+        <b>Search result</b>
+        <Card className="p-3">
+          <CountryDetails country={country} />
+        </Card>
       </div>
     )
   );
 
   return (
     <div>
-      <h2>Question 1</h2>
+      <h3>Question 1</h3>
       <div>Search country: '{countryName}'</div>
       {renderedCountry}
     </div>

@@ -16,11 +16,6 @@
   border: none;
 }
 
-.spin {
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
 .win {
   padding-left: 2rem;
 }
@@ -28,4 +23,17 @@
 .winning {
   color: red;
   font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.buttons {
+  display: flex;
+}
+
+.win-alert {
+  position: absolute;
+  left: calc(50% - 175px);
+  top: 20px;
+  width: 350px;
+  text-align: center;
 }

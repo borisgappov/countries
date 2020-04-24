@@ -53,9 +53,11 @@ class SlotMachine {
       return 20;
     } else if (slots.filter(x => x === 'apple').length === 2) {
       return 10;
-    } else if (slots.filter(x => x === 'lemon').length === 3) {
+    } else if (slots.filter(x => x === 'banana').length === 3) {
+      return 15;
+    } else if (slots.filter(x => x === 'banana').length === 2) {
       return 5;
-    } else if (slots.filter(x => x === 'lemon').length === 2) {
+    } else if (slots.filter(x => x === 'lemon').length === 3) {
       return 3;
     } else {
       return 0;

@@ -5,5 +5,4 @@ export { default as question2Reducer } from './question2/question2Slice';
 export { default as Question3 } from './question3/Question3';
 export { default as question3Reducer } from './question3/question3Slice';
 export { default as Question4 } from './question4/Question4';
-export { default as question4Reducer } from './question4/question4Slice';
 export { default as Question5 } from './question5/Question5';

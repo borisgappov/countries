@@ -31,7 +31,7 @@ const CountryDetails = (props) => {
       <dt>Alpha 3 code</dt>
       <dd>{props.country.alpha3Code}</dd>
       <dt>Flag</dt>
-      <dd><img src={props.country.flag} width="200px" /></dd>
+      <dd><img src={props.country.flag} className="flag" width="200px" /></dd>
     </dl>
   );
 };

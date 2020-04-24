@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CountryList from '../../components/CountryList';
 import { fetchCountries } from './question2Slice';
-import { useSelector, useDispatch } from 'react-redux';
-import './Question2.css'
 
 const Question2 = () => {
   const dispatch = useDispatch();
-
   const { isLoading, error, countries } = useSelector((state) => state.question2);
-
   const search = ['Germany', 'Israel', 'Malta', 'United States'];
 
   useEffect(() => {
@@ -16,20 +14,15 @@ const Question2 = () => {
 
   return (
     <div>
-      <h2>Question 2</h2>
+      <h3>Question 2</h3>
       <div>Search countries: '{[...search].join(', ')}'</div>
       {isLoading ? (
         <span>Loading countries, please wait...</span>
       ) : (
           countries && (
             <div>
-              <h5>Search results</h5>
-              {countries && countries.map((x) => (
-                <div className="coutry" key={x.alpha3Code}>
-                  <div><img src={x.flag} width="30px" /></div>
-                  <div>{x.name}</div>
-                </div>
-              ))}
+              <b>Search results</b>
+              <CountryList countries={countries} />
             </div>
           )
         )}
