@@ -24,7 +24,7 @@ const App = () => {
         <hr />
         <Switch>
           <Route exact path='/'>
-            <Question4 />
+            <Question1 />
           </Route>
           <Route path='/question2'>
             <Question2 />

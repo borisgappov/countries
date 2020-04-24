@@ -1,49 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import './Question4.css';
-import { fetchCountries, setSearch } from './question4Slice';
-import Reels from './reels'
+import SlotMachine from './slot-machine';
+import Wallet from './wallet';
+import cherry from '../../../../public/cherry.png';
+import banana from '../../../../public/banana.png';
+import lemon from '../../../../public/lemon.png';
+import apple from '../../../../public/apple.png';
 
-const reels = new Reels();
+const slotMachine = new SlotMachine();
+const userWallet = new Wallet(20);
+const images = {
+  cherry: <img src={cherry} />,
+  banana: <img src={banana} />,
+  lemon: <img src={lemon} />,
+  apple: <img src={apple} />,
+}
 
 const Question4 = () => {
 
-  const winLimitCounter = 5; // user can't win often than onece per 5 spins
-  const [slots, setSlots] = useState(reels.spin());
-  const [spinCounter, setSpinCounter] = useState(0);
+  const [slots, setSlots] = useState(slotMachine.slots);
+  const [userMoney, setUserMoney] = useState(userWallet.value);
+  const [winning, setWinning] = useState(0);
+
+  useEffect(() => {
+    if (winning) {
+      setTimeout(() => setWinning(0), 1500);
+    }
+  });
 
   const handleClick = (event) => {
-    let results = [];
-    let won = false;
-    let done = false;
-    while (!done) {
-      results = reels.spin();
-      won = [...new Set(results)].length < 3;
-      if (spinCounter >= (winLimitCounter + Math.random() * 10) || !won) {
-        done = true;
-      }
-    }
-    if (won) {
-      setSpinCounter(0);
-      console.log('WON', results)
+    setWinning(0);
+    let result = slotMachine.spin(userWallet);
+    if (result.error) {
+      alert(result.error);
     } else {
-      setSpinCounter(spinCounter + 1);
+      setSlots(result.slots);
+      setUserMoney(userWallet.value);
+      setWinning(result.winning);
     }
-    setSlots(results);
   }
 
   return (
     <div>
       <h2>Question 4</h2>
+      
       <div className="reels">
-        {slots.map((x, i) => <div key={i} className={i === 2 ? 'last' : null}>{x}</div>)}
+        {slots.map((slot, i) => <div key={i} className={i === 2 ? 'last' : null}>{images[slot]}</div>)}
       </div>
-      <button onClick={handleClick}>Spin</button>
+      <b>Funds in user's wallet</b><span> ${userMoney}</span>
+      {!!winning &&
+        <span className="win">
+          You won $<span className="winning">{winning}</span>, congratulations!
+        </span>}
+      <div>
+        <button className="spin" onClick={handleClick} disabled={userWallet.value === 0}>Spin</button>
+      </div>
     </div>
   );
 };
-
-
-
 
 export default Question4;

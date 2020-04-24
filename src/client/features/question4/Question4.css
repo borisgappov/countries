@@ -1,7 +1,7 @@
 .reels {
   display: flex;
   border: 1px solid silver;
-  width: 210px;
+  width: 225px;
   margin-bottom: 10px;
 }
 
@@ -9,9 +9,23 @@
   padding: 5px;
   border-right: 1px solid silver;
   text-align: center;
-  width: 70px;
+  width: 75px;
 }
 
 .reels .last {
   border: none;
+}
+
+.spin {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.win {
+  padding-left: 2rem;
+}
+
+.winning {
+  color: red;
+  font-weight: bold;
 }
