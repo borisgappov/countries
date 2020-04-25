@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getCountries } from '../../restcountries-service'
+import { getCountries } from '../core'
 
 const question3Slice = createSlice({
   name: 'question3',
@@ -9,6 +9,7 @@ const question3Slice = createSlice({
     error: null,
     countries: null,
     search: 'mal',
+    lastLoadedFor: null,
   },
   reducers: {
     getCountriesStart: state => {
@@ -18,6 +19,7 @@ const question3Slice = createSlice({
       state.countries = payload
       state.isLoading = false
       state.error = null
+      state.lastLoadedFor = state.search
     },
     getCountriesFailure: (state, action) => {
       state.isLoading = false

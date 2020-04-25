@@ -1,25 +1,37 @@
 /* eslint-disable no-console */
-const os = require('os')
 
 const express = require('express')
-const requestProxy = require('express-request-proxy')
+const httpProxy = require('http-proxy')
 
-const getTransforms = require('./transform')
+const { countriesMiddleware, cache, getKey, filterCountries } = require('./countries-middleware')
+
+const proxy = httpProxy.createProxyServer({
+  secure: false,
+  changeOrigin: true,
+})
 
 const app = express()
 
 app.use(express.static('dist'))
 
-app.get('/api/getUsername', (req, res) => {
-  return res.send({ username: os.userInfo().username })
-})
-
-app.get('/countries/rest/v2/:name/:param?', (req, res) => {
-  return requestProxy({
-    url: 'https://restcountries.eu/rest/v2/:name/:param?',
-    transforms: req.params.name === 'all' ? getTransforms(req) : null,
-    // cache: redis.createClient(), // need a redis for caching
-  })(req, res)
-})
+app.use(
+  '/countries/rest/v2/:name/:param?',
+  (req, res, next) => {
+    let key = getKey(req)
+    let result = cache.has(key) && cache.get(key)
+    if (result) {
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Headers', 'Accept, X-Requested-With')
+      res.header('Access-Control-Allow-Methods', 'GET')
+      res.status(200).json(filterCountries(req, result))
+    } else {
+      proxy.web(req, res, {
+        target: `https://restcountries.eu/rest/v2/${req.params.name}/${req.params.param ? req.params.param : ''}`,
+      })
+    }
+    next()
+  },
+  countriesMiddleware,
+)
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`))

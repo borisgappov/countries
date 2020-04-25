@@ -1,6 +1,5 @@
-import { fixNonSerializable } from './core/utils'
-import * as restCountries from './restcountries-client/index'
-import GetAll from './restcountries-client/model/GetAll'
+import * as restCountries from '../restcountries-client/index'
+import GetAll from '../restcountries-client/model/GetAll'
 
 const instance = new restCountries.RestApi()
 
@@ -54,4 +53,6 @@ export const getCountries = countries => {
   })
 }
 
-export const apiInstance = instance
+const fixNonSerializable = data => {
+  return JSON.parse(JSON.stringify(data))
+}

@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { Error } from './components'
 import { Question1, Question2, Question3, Question4, Question5 } from './features'
 
 export const App = props => {
@@ -68,6 +69,7 @@ export const App = props => {
           </Switch>
         </ContentRow>
       </Container>
+      <Error />
     </ConnectedRouter>
   )
 }

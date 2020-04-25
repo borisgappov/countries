@@ -3,24 +3,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import styled from 'styled-components'
 
-import { AppSpinner } from '../../components/AppSpinner'
-import { CountryList } from '../../components/CountryList'
-
-import { fetchCountries, setSearch } from './question3Slice'
+import { CountryList, AppSpinner } from '../components'
+import { fetchCountries, setSearch } from '../reducers/question3Slice'
+import { setError } from '../reducers/commonSlice'
 
 export const Question3 = () => {
   const dispatch = useDispatch()
 
-  const { isLoading, error, countries, search } = useSelector(state => state.question3)
+  const { isLoading, error, countries, search, lastLoadedFor } = useSelector(state => state.question3)
 
   useEffect(() => {
-    if (search && search.length) {
-      dispatch(fetchCountries([search]))
-    }
-  }, [search])
+    if (search && search.length && search != lastLoadedFor) dispatch(fetchCountries([search]))
+    if (error) dispatch(setError(error))
+  }, [search, error])
 
   const handleChange = event => {
-    dispatch(setSearch(event.target.value))
+    if (event.target.value !== search) {
+      dispatch(setSearch(event.target.value))
+    }
   }
 
   const handleSubmit = event => {

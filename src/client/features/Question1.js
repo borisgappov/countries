@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import styled from 'styled-components'
 
-import { AppSpinner } from '../../components/AppSpinner'
-import { CountryDetails } from '../../components/CountryDetails'
-
-import { fetchCountry } from './question1Slice'
+import { AppSpinner, CountryDetails } from '../components'
+import { fetchCountry } from '../reducers/question1Slice'
+import { setError } from '../reducers/commonSlice'
 
 export const Question1 = () => {
   const dispatch = useDispatch()
@@ -16,10 +15,9 @@ export const Question1 = () => {
   const countryName = 'Malta'
 
   useEffect(() => {
-    if (!country) {
-      dispatch(fetchCountry(countryName))
-    }
-  }, [])
+    if (!country) dispatch(fetchCountry(countryName))
+    if (error) dispatch(setError(error))
+  }, [error])
 
   let renderedCountry = isLoading ? (
     <AppSpinner text="Loading country details, please wait..." />

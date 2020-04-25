@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getCountries } from '../../restcountries-service'
+import { getCountries } from '../core'
 
 const question2Slice = createSlice({
   name: 'question2',

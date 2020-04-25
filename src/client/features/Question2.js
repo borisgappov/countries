@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { CountryList } from '../../components/CountryList'
-import { AppSpinner } from '../../components/AppSpinner'
-
-import { fetchCountries } from './question2Slice'
+import { AppSpinner, CountryList } from '../components'
+import { fetchCountries } from '../reducers/question2Slice'
+import { setError } from '../reducers/commonSlice'
 
 export const Question2 = () => {
   const dispatch = useDispatch()
@@ -12,10 +11,9 @@ export const Question2 = () => {
   const search = ['Germany', 'Israel', 'Malta', 'United States']
 
   useEffect(() => {
-    if (!countries) {
-      dispatch(fetchCountries(search))
-    }
-  }, [])
+    if (!countries) dispatch(fetchCountries(search))
+    if (error) dispatch(setError(error))
+  }, [error])
 
   return (
     <div>
