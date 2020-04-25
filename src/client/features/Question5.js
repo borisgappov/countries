@@ -28,7 +28,7 @@ WHERE EXISTS (
       </Highlight>
 
       <h4>Database schema</h4>
-      <img src="public/schema.png" />
+      <img src="/images/schema.png" />
 
       <h4>Create database query (MS SQL Server)</h4>
       <Highlight className="sql">

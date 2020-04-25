@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { bounceInDown } from 'react-animations'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import styled, { keyframes } from 'styled-components'
-import { bounceInDown } from 'react-animations'
 
 export const ErrorMessage = props => {
   const handleClick = event => {

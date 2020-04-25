@@ -5,7 +5,7 @@ import { clearError } from '../reducers/commonSlice'
 
 import { ErrorMessage } from './ErrorMessage'
 
-export const Error = props => {
+export const Error = () => {
   const dispatch = useDispatch()
   const { error } = useSelector(state => state.common)
 

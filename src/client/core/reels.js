@@ -1,4 +1,4 @@
-class Random {
+export class Random {
   prev = 0
   next() {
     let rnd = this.prev
@@ -10,7 +10,7 @@ class Random {
   }
 }
 
-class Reel {
+export class Reel {
   reel = []
   random = new Random()
   constructor(reel) {
