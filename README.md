@@ -1,5 +1,7 @@
 ### Countries test application
 
+[![Countries test app](https://img.youtube.com/vi/nwvDRu2TxQ4/0.jpg)](https://www.youtube.com/watch?v=nwvDRu2TxQ4)
+
 #### Installation
 `$ npm install`
 #### Run in development
