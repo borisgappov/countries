@@ -1,31 +1,43 @@
-import * as restCountries from './restcountries-client/index';
-import GetAll from './restcountries-client/model/GetAll';
-import { fixNonSerializable } from './core/utils';
+import { fixNonSerializable } from './core/utils'
+import * as restCountries from './restcountries-client/index'
+import GetAll from './restcountries-client/model/GetAll'
 
-const instance = new restCountries.RestApi();
+const instance = new restCountries.RestApi()
 
-instance.apiClient.basePath = `${process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : ''}/countries`;
+instance.apiClient.basePath = `${process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : ''}/countries`
 
-instance.getAll = function (queryParams, callback) {
-  return instance.apiClient.callApi.call(instance.apiClient,
-    '/rest/v2/all', 'GET', {},
+instance.getAll = function(queryParams, callback) {
+  return instance.apiClient.callApi.call(
+    instance.apiClient,
+    '/rest/v2/all',
+    'GET',
+    {},
     queryParams,
-    {}, {}, null, [], [], ['application/json'], [GetAll], null, callback);
-};
+    {},
+    {},
+    null,
+    [],
+    [],
+    ['application/json'],
+    [GetAll],
+    null,
+    callback,
+  )
+}
 
-export const getCountry = (countryName) => {
+export const getCountry = countryName => {
   return new Promise((resolve, reject) => {
     instance.getByCountryName(countryName, (error, data, response) => {
       if (error) {
-        reject(error);
+        reject(error)
       } else {
-        resolve(fixNonSerializable(data[0]));
+        resolve(fixNonSerializable(data[0]))
       }
-    });
-  });
+    })
+  })
 }
 
-export const getCountries = (countries) => {
+export const getCountries = countries => {
   return new Promise((resolve, reject) => {
     instance.getAll(
       {
@@ -33,13 +45,13 @@ export const getCountries = (countries) => {
       },
       (error, data, response) => {
         if (error) {
-          reject(error);
+          reject(error)
         } else {
-          resolve(fixNonSerializable(data));
+          resolve(fixNonSerializable(data))
         }
-      }
-    );
-  });
+      },
+    )
+  })
 }
 
-export const apiInstance = instance;
+export const apiInstance = instance

@@ -1,21 +1,23 @@
-import { ConnectedRouter } from 'connected-react-router';
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import Navbar from 'react-bootstrap/Navbar';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Route, Switch } from 'react-router-dom';
-import { Question1, Question2, Question3, Question4, Question5 } from './features';
+import { ConnectedRouter } from 'connected-react-router'
+import React from 'react'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Row from 'react-bootstrap/Row'
+import Navbar from 'react-bootstrap/Navbar'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Route, Switch } from 'react-router-dom'
+import styled from 'styled-components'
 
-const App = (props) => {
+import { Question1, Question2, Question3, Question4, Question5 } from './features'
+
+export const App = props => {
   return (
     <ConnectedRouter history={props.history}>
-      <Container className="pt-2">
+      <Container>
         <Navbar bg="light" variant="light">
           <LinkContainer to="/">
             <Navbar.Brand href="">
-              <b>Yobetit Test</b>
+              <b>Countries</b>
             </Navbar.Brand>
           </LinkContainer>
           <Nav activeKey="/">
@@ -46,28 +48,30 @@ const App = (props) => {
             </Nav.Item>
           </Nav>
         </Navbar>
-        <Row className="p-3">
+        <ContentRow>
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
               <Question1 />
             </Route>
-            <Route path='/question2'>
+            <Route path="/question2">
               <Question2 />
             </Route>
-            <Route path='/question3'>
+            <Route path="/question3">
               <Question3 />
             </Route>
-            <Route path='/question4'>
+            <Route path="/question4">
               <Question4 />
             </Route>
-            <Route path='/question5'>
+            <Route path="/question5">
               <Question5 />
             </Route>
           </Switch>
-        </Row>
+        </ContentRow>
       </Container>
     </ConnectedRouter>
-  );
-};
+  )
+}
 
-export default App;
+const ContentRow = styled(Row)`
+  padding: 20px;
+`

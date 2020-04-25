@@ -1,41 +1,67 @@
-import React from 'react';
-import './CountryDetails.css';
+import React from 'react'
+import styled from 'styled-components'
 
-const CountryDetails = (props) => {
+export const CountryDetails = props => {
   return (
     <dl>
-      <dt>Name</dt>
-      <dd>{props.country.name}</dd>
-      <dt>Native Name</dt>
-      <dd>{props.country.nativeName}</dd>
-      <dt>Capital</dt>
-      <dd>{props.country.capital}</dd>
-      <dt>Region</dt>
-      <dd>{props.country.region}</dd>
-      <dt>Sub region</dt>
-      <dd>{props.country.subregion}</dd>
-      <dt>Population</dt>
-      <dd>{props.country.population}</dd>
-      <dt>Currencies</dt>
-      <dd className='currency'>
+      <PropName>Name</PropName>
+      <PropValue>{props.country.name}</PropValue>
+      <PropName>Native Name</PropName>
+      <PropValue>{props.country.nativeName}</PropValue>
+      <PropName>Capital</PropName>
+      <PropValue>{props.country.capital}</PropValue>
+      <PropName>Region</PropName>
+      <PropValue>{props.country.region}</PropValue>
+      <PropName>Sub region</PropName>
+      <PropValue>{props.country.subregion}</PropValue>
+      <PropName>Population</PropName>
+      <PropValue>{props.country.population}</PropValue>
+      <PropName>Currencies</PropName>
+      <PropValue>
         {props.country.currencies &&
-          props.country.currencies.map((x) => (
+          props.country.currencies.map(x => (
             <div key={x.code}>
-              <span className='label'>
+              <Currency>
                 {x.code}, {x.symbol}
-              </span>{' '}
-                  - {x.name}
+              </Currency>{' '}
+              - {x.name}
             </div>
           ))}
-      </dd>
-      <dt>Alpha 3 code</dt>
-      <dd>{props.country.alpha3Code}</dd>
-      <dt>Flag</dt>
-      <dd><img src={props.country.flag} className="flag" width="200px" /></dd>
+      </PropValue>
+      <PropName>Alpha 3 code</PropName>
+      <PropValue>{props.country.alpha3Code}</PropValue>
+      <PropName>Flag</PropName>
+      <PropValue>
+        <Flag src={props.country.flag} />
+      </PropValue>
     </dl>
-  );
-};
+  )
+}
 
-export default CountryDetails;
+const PropName = styled.dt`
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: rgb(0, 102, 150);
+  ::after {
+    content: ':';
+  }
+`
+const PropValue = styled.dd`
+  margin-left: 110px;
+  padding: 0 0 0.5rem 0;
+`
 
+const Flag = styled.img`
+  width: 200px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+`
 
+const Currency = styled.span`
+  color: green;
+  font-weight: normal;
+  width: 50px;
+`

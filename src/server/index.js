@@ -1,25 +1,25 @@
-const express = require('express');
-const os = require('os');
-const requestProxy = require('express-request-proxy');
-const getTransforms = require('./transform');
+/* eslint-disable no-console */
+const os = require('os')
 
+const express = require('express')
+const requestProxy = require('express-request-proxy')
 
-const app = express();
+const getTransforms = require('./transform')
 
-app.use(express.static('dist'));
+const app = express()
+
+app.use(express.static('dist'))
 
 app.get('/api/getUsername', (req, res) => {
-  return res.send({ username: os.userInfo().username });
-});
+  return res.send({ username: os.userInfo().username })
+})
 
-app.get(
-  '/countries/rest/v2/:name/:param?',
-  (req, res) => {
-    return requestProxy({
-      url: 'https://restcountries.eu/rest/v2/:name/:param?',
-      transforms: req.params.name === 'all' ? getTransforms(req) : null,
-    })(req, res);
-  }
-);
+app.get('/countries/rest/v2/:name/:param?', (req, res) => {
+  return requestProxy({
+    url: 'https://restcountries.eu/rest/v2/:name/:param?',
+    transforms: req.params.name === 'all' ? getTransforms(req) : null,
+    // cache: redis.createClient(), // need a redis for caching
+  })(req, res)
+})
 
-app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`))

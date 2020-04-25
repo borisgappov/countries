@@ -1,13 +1,12 @@
-import React from 'react';
-import Highlight from 'react-highlight.js';
+import React from 'react'
+import Highlight from 'react-highlight.js'
 
-const Question5 = () => {
-
+export const Question5 = () => {
   return (
     <div>
       <h2>Question 5</h2>
       <h4>SQL query (MS SQL Server)</h4>
-      <Highlight className='sql'>
+      <Highlight className="sql">
         {`
 SELECT *
 FROM Players AS p
@@ -27,17 +26,17 @@ WHERE EXISTS (
 )
         `}
       </Highlight>
-      
+
       <h4>Database schema</h4>
       <img src="public/schema.png" />
 
       <h4>Create database query (MS SQL Server)</h4>
-      <Highlight className='sql'>
+      <Highlight className="sql">
         {`
-CREATE DATABASE [YobetitTest]
+CREATE DATABASE [CountriesTestApp]
 GO
 
-USE [YobetitTest]
+USE [CountriesTestApp]
 GO
 
 CREATE TABLE [dbo].[Countries](
@@ -154,7 +153,5 @@ GO
         `}
       </Highlight>
     </div>
-  );
-};
-
-export default Question5;
+  )
+}

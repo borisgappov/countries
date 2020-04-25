@@ -1,0 +1,6 @@
+build/*
+dist/*
+node_modules/
+client/fonts.css
+*.css
+restcountries-client/

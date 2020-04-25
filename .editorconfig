@@ -1,0 +1,13 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.{js,css,json}]
+charset = utf-8
+
+[Makefile]
+ident_style = tab

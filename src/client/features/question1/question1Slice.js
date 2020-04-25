@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getCountry } from '../../restcountries-service';
+import { createSlice } from '@reduxjs/toolkit'
+
+import { getCountry } from '../../restcountries-service'
 
 const question1Slice = createSlice({
   name: 'question1',
@@ -9,33 +10,31 @@ const question1Slice = createSlice({
     country: null,
   },
   reducers: {
-    getCountryStart: (state) => {
-      state.isLoading = true;
+    getCountryStart: state => {
+      state.isLoading = true
     },
     getCountrySuccess(state, { payload }) {
-      state.country = payload;
-      state.isLoading = false;
-      state.error = null;
+      state.country = payload
+      state.isLoading = false
+      state.error = null
     },
     getCountryFailure: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
+      state.isLoading = false
+      state.error = action.payload
     },
   },
-});
+})
 
-const { getCountryStart, getCountrySuccess, getCountryFailure } = question1Slice.actions;
+const { getCountryStart, getCountrySuccess, getCountryFailure } = question1Slice.actions
 
-export default question1Slice.reducer;
-
-export const fetchCountry = (countryName) => async (dispatch) => {
+export const fetchCountry = countryName => async dispatch => {
   try {
-    dispatch(getCountryStart());
-    const country = await getCountry(countryName);
-    dispatch(getCountrySuccess(country));
+    dispatch(getCountryStart())
+    const country = await getCountry(countryName)
+    dispatch(getCountrySuccess(country))
   } catch (err) {
-    dispatch(getCountryFailure(err.toString()));
+    dispatch(getCountryFailure(err.toString()))
   }
-};
+}
 
-
+export const question1Reducer = question1Slice.reducer

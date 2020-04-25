@@ -1,40 +1,52 @@
-import React, { useEffect } from 'react';
-import { fetchCountry } from './question1Slice';
-import { useSelector, useDispatch } from 'react-redux';
-import CountryDetails from '../../components/CountryDetails'
-import Card from 'react-bootstrap/Card';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Card from 'react-bootstrap/Card'
+import styled from 'styled-components'
 
-const Question1 = () => {
-  const dispatch = useDispatch();
+import { AppSpinner } from '../../components/AppSpinner'
+import { CountryDetails } from '../../components/CountryDetails'
 
-  const { isLoading, error, country } = useSelector((state) => state.question1);
+import { fetchCountry } from './question1Slice'
 
-  const countryName = 'Malta';
+export const Question1 = () => {
+  const dispatch = useDispatch()
+
+  const { isLoading, error, country } = useSelector(state => state.question1)
+
+  const countryName = 'Malta'
 
   useEffect(() => {
-    dispatch(fetchCountry(countryName));
-  }, [countryName]);
+    if (!country) {
+      dispatch(fetchCountry(countryName))
+    }
+  }, [])
 
   let renderedCountry = isLoading ? (
-    <span>Loading country "{countryName}", please wait...</span>
+    <AppSpinner text="Loading country details, please wait..." />
   ) : (
     country && (
       <div>
         <b>Search result</b>
-        <Card className="p-3">
+        <StyledCard>
           <CountryDetails country={country} />
-        </Card>
+        </StyledCard>
       </div>
     )
-  );
+  )
 
   return (
-    <div>
+    <Wrapper>
       <h3>Question 1</h3>
       <div>Search country: '{countryName}'</div>
       {renderedCountry}
-    </div>
-  );
-};
+    </Wrapper>
+  )
+}
 
-export default Question1;
+const Wrapper = styled.div`
+  width: 350px;
+`
+
+const StyledCard = styled(Card)`
+  padding: 15px;
+`
