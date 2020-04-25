@@ -24,7 +24,7 @@ const filterCountries = (req, items) => {
     : items
 }
 
-const countriesMiddleware = (req, res) => {
+const countriesMiddleware = async (req, res) => {
   let oldWrite = res.write,
     oldEnd = res.end,
     chunks = [],
